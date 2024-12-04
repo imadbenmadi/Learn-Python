@@ -21,6 +21,16 @@ class Task:
             conn.commit()
 
     @staticmethod
+    def get_all_tasks():
+        with sqlite3.connect(DB_PATH) as conn:
+            cursor = conn.cursor()
+            query = "SELECT * FROM tasks"
+            cursor.execute(query)
+            tasks = cursor.fetchall()
+            return tasks
+                
+        
+    @staticmethod
     def load_from_db(task_id):
         with sqlite3.connect(DB_PATH) as conn:
             cursor = conn.cursor()

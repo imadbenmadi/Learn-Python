@@ -8,23 +8,21 @@ task_routes = Blueprint("task_routes", __name__)
 @task_routes.route('/tasks', methods=['POST'])
 def create_task():
     data = request.json
+    print("Received Data:", data)  # Add this line to print incoming data
+    if data is None:
+        return jsonify({"error": "Invalid JSON data"}), 400
     if data['type'] == 'personal':
         task = PersonalTask(data['title'], data['due_date'], data.get('priority', 'low'), data.get('description', ''))
-    else:
+    elif data['type'] == 'work':
         task = WorkTask(data['title'], data['due_date'], data.get('description', ''))
+    else:
+        return jsonify({"error": "Invalid task type"}), 400
     task.save_to_db()
     return jsonify({"message": "Task created successfully"}), 201
 
 @task_routes.route('/tasks', methods=['GET'])
 def get_tasks():
-    with sqlite3.connect("tasks.db") as conn:
-        cursor = conn.cursor()
-        query = "SELECT * FROM tasks"
-        filters = request.args.get('type')
-        if filters:
-            query += f" WHERE type='{filters}'"
-        cursor.execute(query)
-        tasks = cursor.fetchall()
+    tasks = Task.get_all_tasks()
     return jsonify(tasks), 200
 
 @task_routes.route('/tasks/<int:task_id>', methods=['GET'])

@@ -6,8 +6,8 @@ app = Flask(__name__)
 # Initialize database
 init_db()
 
-# Register routes
+# Instead of defining all routes in the main app file, we can create separate blueprints and register them with the main app.
 app.register_blueprint(task_routes)
 
-if __name__ == "__main__":
+if __name__ == "__main__": 
     app.run(debug=True)
