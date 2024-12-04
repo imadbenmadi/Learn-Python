@@ -69,24 +69,19 @@ Database Schema:
 
 Setup Instructions:  
 
-1. Create a virtual environment:  
-   - On Linux/MacOS:  
-     python3 -m venv venv  
-   - On Windows:  
-     python -m venv venv  
+1. Create a virtual environment:
+   python -m venv venv  
 
-2. Activate the virtual environment:  
-   - On Linux/MacOS:  
-     source venv/bin/activate  
+3. Activate the virtual environment:   
    - On Windows:  
      venv\Scripts\activate  
 
-3. Install dependencies:  
+4. Install dependencies:  
    pip install -r requirements.txt  
 
-4. Initialize the database by running the application. This will create the necessary SQLite database file if it doesn't exist.  
+5. Initialize the database by running the application. This will create the necessary SQLite database file if it doesn't exist.  
 
-5. Run the Flask application:  
+6. Run the Flask application:  
    python src/app.py  
 
 Example Usage:  
