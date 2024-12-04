@@ -30,12 +30,12 @@ task.py
         - `title`: Name of the task.
         - `due_date`: Due date for task completion.
         - `status`: Status of the task, defaulting to "pending."
-        - `_description`: Short optional description (max 15 characters).
+        - `description`: Short optional description (max 15 characters).
         - `flag`: Indicates if the task is "personal" or "work."
     - Methods:
         - `mark_completed()`: Marks the task as completed.
         - `display()`: Returns task details as a formatted string.
-        - Getter and setter methods for `_task_id` and `_description`.
+        - Getter and setter methods for `_task_id` and `description`.
 
 2. PersonalTask Class (inherits from Task)
 

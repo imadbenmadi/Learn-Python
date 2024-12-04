@@ -16,7 +16,7 @@ class Task:
         self.title = title
         self.due_date = due_date
         self.status = "pending"
-        self._description = description if description is not None else ""
+        self.description = description if description is not None else ""
         self.flag = flag if flag else "general"
 
     def _is_valid_date(self, date_str):  # Now it takes 'self' as an argument
@@ -44,12 +44,12 @@ class Task:
 
     # Getters and setters for description
     def getdescription(self):
-        return self._description
+        return self.description
 
     def setdescription(self, description):
         if len(description) > 15:
             raise Exception("Description cannot exceed 15 characters.")
-        self._description = description
+        self.description = description
 
 
 class PersonalTask(Task):
