@@ -38,10 +38,15 @@ def update_task(task_id):
     task = Task.load_from_db(task_id)
     if not task:
         return jsonify({"error": "Task not found"}), 404
-    task.title = data['title']
-    task.due_date = data['due_date']
-    task.description = data.get('description', '')
-    task.priority = data.get('priority', 'low')
+    
+    if 'title' in data and data['title']:
+        task.title = data['title']
+    if 'due_date' in data:
+        task.due_date = data['due_date']
+    if 'description' in data and data['description']:
+        task.description = data['description']
+    if 'priority' in data and data['priority']:
+        task.priority = data['priority']
     task.update_in_db()
     return jsonify({"message": "Task updated successfully"}), 200
 
