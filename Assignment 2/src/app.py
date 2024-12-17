@@ -1,12 +1,17 @@
 from flask import Flask
+from flask_cors import CORS  # Import CORS
 from database import init_db
 from task_manager import task_routes
+
 app = Flask(__name__)
+
+# Enable CORS
+CORS(app, resources={r"/*": {"origins": "http://localhost:5173"}})
 
 # Initialize database
 init_db()
 
-# Instead of defining all routes in the main app file, we can create separate blueprints and register them with the main app.
+# Register blueprints
 app.register_blueprint(task_routes)
 
 if __name__ == "__main__": 
